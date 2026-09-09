@@ -14,7 +14,7 @@ public static class SeedData
         using var scope = services.CreateScope();
     
         var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityRole>>();
+        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
         string[] roles = {"Manager", "Staff"};
 
@@ -24,6 +24,15 @@ public static class SeedData
             {
                 await roleManager.CreateAsync(new IdentityRole(role));
             }
+        }
+
+        var manager = await userManager.FindByEmailAsync("manager@example.com");
+
+        if (manager == null)
+        {
+            manager = new IdentityUser {UserName = "manager@example.com", Email = "manager@example.com", EmailConfirmed = true};
+            await userManager.CreateAsync(manager, "Test1234!");
+            await userManager.AddToRoleAsync(manager, "Manager");
         }
     
     }
