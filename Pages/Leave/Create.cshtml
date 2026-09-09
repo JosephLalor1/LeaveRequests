@@ -1,0 +1,26 @@
+@page
+@model LeaveRequests.Pages.Leave.CreateModel
+
+<h1>Hello</h1>
+
+<div asp-validation-summary="All"></div>
+
+<form method="post">
+    <label>Start Date</label>
+    <input asp-for="Input.StartDate"/>
+    <span asp-validation-for="Input.StartDate"></span>
+
+    <label>End Date</label>
+    <input asp-for="Input.EndDate"/>
+    <span asp-validation-for="Input.StartDate"></span>
+
+    <label>Reason</label>
+    <input asp-for="Input.Reason"/>
+    <span asp-validation-for="Input.StartDate"></span>
+
+    <label>Type</label>
+    <select asp-for="Input.Type" asp-items="Html.GetEnumSelectList<LeaveType>()"></select>
+    <span asp-validation-for="Input.StartDate"></span>
+
+    <button type="submit">Submit request</button>
+</form>

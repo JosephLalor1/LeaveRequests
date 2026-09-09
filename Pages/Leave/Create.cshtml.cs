@@ -35,6 +35,10 @@ public class CreateModel : PageModel
         Input.UserId = userId;
         Input.Status = LeaveStatus.Pending;
         Input.SubmittedAt = DateTime.UtcNow;
+        
+        _context.LeaveRequests.Add(Input);
+        await _context.SaveChangesAsync();
+
         return RedirectToPage("./Index");
     }
 }
