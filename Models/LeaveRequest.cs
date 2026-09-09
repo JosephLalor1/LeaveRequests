@@ -12,7 +12,7 @@ public class LeaveRequest
     public DateOnly StartDate {get; set; }
     public DateOnly EndDate {get; set; }
     public string Reason {get; set; } = string.Empty;
-    public DateOnly SubmittedAt {get; set; }
+    public DateTime SubmittedAt {get; set; }
     public LeaveStatus Status {get; set; }
     public LeaveType Type {get; set; }
 }
