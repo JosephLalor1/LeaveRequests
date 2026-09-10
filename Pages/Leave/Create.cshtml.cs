@@ -16,8 +16,8 @@ public class CreateModel : PageModel
     private readonly UserManager<IdentityUser> _userManager;
     public CreateModel(ApplicationDbContext context, UserManager<IdentityUser> userManager)
     {
-        context = _context;
-        userManager = _userManager;
+        _context = context;
+        _userManager = userManager;
     }
 
     public void OnGet()
@@ -39,6 +39,6 @@ public class CreateModel : PageModel
         _context.LeaveRequests.Add(Input);
         await _context.SaveChangesAsync();
 
-        return RedirectToPage("./Index");
+        return RedirectToPage("../Index");
     }
 }
