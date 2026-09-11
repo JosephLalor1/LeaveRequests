@@ -1,0 +1,20 @@
+@page
+@model LeaveRequests.Pages.Leave.IndexModel
+
+<h1>Leave Request Dashboard</h1>
+
+<table>
+    <thead>
+        <th>Dates</th>
+        <th>Type</th>
+        <th>Status</th>
+    </thead>
+    <tbody>
+        @foreach (var request in Model.Requests)
+        {
+            <td>@request.StartDate - @request.EndDate</td>
+            <td>@request.Type</td>
+            <td>@request.Status</td>
+        }
+    </tbody>
+</table>

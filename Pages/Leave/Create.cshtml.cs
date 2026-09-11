@@ -39,6 +39,6 @@ public class CreateModel : PageModel
         _context.LeaveRequests.Add(Input);
         await _context.SaveChangesAsync();
 
-        return RedirectToPage("../Index");
+        return RedirectToPage("./Index");
     }
 }
