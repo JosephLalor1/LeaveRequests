@@ -7,4 +7,5 @@ namespace LeaveRequests.Data;
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext(options)
 {
     public DbSet<LeaveRequest> LeaveRequests {get; set; }
+    public DbSet<AuditEntry> AuditEntries {get; set; }
 }

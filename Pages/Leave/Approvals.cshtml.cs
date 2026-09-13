@@ -2,6 +2,7 @@
 
 using LeaveRequests.Data;
 using LeaveRequests.Models;
+using LeaveRequests.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Identity;
@@ -17,10 +18,12 @@ public class ApprovalsModel : PageModel
     public List<LeaveRequest> Requests {get; set; } = new();
     private readonly ApplicationDbContext _context;
     private readonly UserManager<IdentityUser> _userManager;
-    public ApprovalsModel(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+    private readonly AuditService _auditService;
+    public ApprovalsModel(ApplicationDbContext context, UserManager<IdentityUser> userManager, AuditService auditService)
     {
         _context = context;
         _userManager = userManager;
+        _auditService = auditService;
     }
 
     public async Task OnGetAsync()
@@ -37,6 +40,9 @@ public class ApprovalsModel : PageModel
     {
         var request = await _context.LeaveRequests.FindAsync(id);
 
+        var userId = _userManager.GetUserId(User);
+        string email = User.Identity?.Name ?? "";
+
         if (request == null)
         {
             return NotFound();
@@ -44,6 +50,7 @@ public class ApprovalsModel : PageModel
 
         request.Status = LeaveStatus.Approved;
 
+        _auditService.Record(AuditAction.Approved, userId, email, request.Id, LeaveStatus.Pending, LeaveStatus.Approved);
         await _context.SaveChangesAsync();
 
         return RedirectToPage();
@@ -53,6 +60,9 @@ public class ApprovalsModel : PageModel
     {
         var request = await _context.LeaveRequests.FindAsync(id);
 
+        var userId = _userManager.GetUserId(User);
+        string email = User.Identity?.Name ?? "";
+
         if (request == null)
         {
             return NotFound();
@@ -60,6 +70,7 @@ public class ApprovalsModel : PageModel
 
         request.Status = LeaveStatus.Rejected;
 
+        _auditService.Record(AuditAction.Rejected, userId, email, request.Id, LeaveStatus.Pending, LeaveStatus.Rejected);
         await _context.SaveChangesAsync();
 
         return RedirectToPage();
