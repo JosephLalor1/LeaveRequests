@@ -34,6 +34,15 @@ public static class SeedData
             await userManager.CreateAsync(manager, "Test1234!");
             await userManager.AddToRoleAsync(manager, "Manager");
         }
+
+        var staff = await userManager.FindByEmailAsync("staff@example.com");
+
+        if (staff == null)
+        {
+            staff = new IdentityUser {UserName = "staff@example.com", Email = "staff@example.com", EmailConfirmed = true};
+            await userManager.CreateAsync(staff, "Test1234!");
+            await userManager.AddToRoleAsync(staff, "Staff");
+        }
     
     }
     

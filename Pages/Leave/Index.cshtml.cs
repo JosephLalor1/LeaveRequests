@@ -1,8 +1,11 @@
-using AspNetCoreGeneratedDocument;
+/*Created: 08/09/2026
+By: Joseph Lalor
+Project: Leave Requests
+Description: Dashboard for viewing requests*/
+
 using LeaveRequests.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using LeaveRequests.Models;

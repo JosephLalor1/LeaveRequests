@@ -6,21 +6,29 @@
 <div asp-validation-summary="All"></div>
 
 <form method="post">
-    <label>Start Date</label>
-    <input asp-for="Input.StartDate"/>
-    <span asp-validation-for="Input.StartDate"></span>
+    <div class="mb-3">
+        <label asp-for="Input.StartDate" class="form-label"></label>
+        <input asp-for="Input.StartDate" class="form-control" />
+        <span asp-validation-for="Input.StartDate" class="text-danger"></span>
+    </div>
 
-    <label>End Date</label>
-    <input asp-for="Input.EndDate"/>
-    <span asp-validation-for="Input.StartDate"></span>
+    <div class="mb-3">
+        <label asp-for="Input.EndDate" class="form-label"></label>
+        <input asp-for="Input.EndDate" class="form-control" />
+        <span asp-validation-for="Input.EndDate" class="text-danger"></span>
+    </div>
 
-    <label>Reason</label>
-    <input asp-for="Input.Reason"/>
-    <span asp-validation-for="Input.StartDate"></span>
+    <div class="mb-3">
+        <label asp-for="Input.Reason" class="form-label"></label>
+        <input asp-for="Input.Reason" class="form-control" />
+        <span asp-validation-for="Input.Reason" class="text-danger"></span>
+    </div>
 
-    <label>Type</label>
-    <select asp-for="Input.Type" asp-items="Html.GetEnumSelectList<LeaveType>()"></select>
-    <span asp-validation-for="Input.StartDate"></span>
+    <div class="mb-3">
+        <label asp-for="Input.Type" class="form-label"></label>
+        <select asp-for="Input.Type" asp-items="Html.GetEnumSelectList<LeaveType>()" class="form-select"></select>
+        <span asp-validation-for="Input.Type" class="text-danger"></span>
+    </div>
 
-    <button type="submit">Submit request</button>
+    <button type="submit" class="btn btn-primary">Submit request</button>
 </form>

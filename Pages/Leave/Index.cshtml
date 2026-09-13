@@ -5,16 +5,20 @@
 
 <table class="table">
     <thead>
-        <th>Dates</th>
-        <th>Type</th>
-        <th>Status</th>
+        <tr>
+            <th>Dates</th>
+            <th>Type</th>
+            <th>Status</th>
+        </tr>
     </thead>
     <tbody>
         @foreach (var request in Model.Requests)
         {
-            <td>@request.StartDate - @request.EndDate</td>
-            <td>@request.Type</td>
-            <td>@request.Status</td>
+            <tr>
+                <td>@request.StartDate - @request.EndDate</td>
+                <td>@request.Type</td>
+                <td>@request.Status</td>
+            </tr>
         }
     </tbody>
 </table>

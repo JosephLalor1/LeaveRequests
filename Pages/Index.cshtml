@@ -5,6 +5,16 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Leave Request System</h1>
+    <p><br><br>An employee leave system with role-based approval and an audit log of all activity.<br> Built with
+    ASP.NET Core Razor pages, Entity Framework Core and ASP.NET Core Identity.
+    </p>
+    <h3>Try it</h3>
+    <p><br>Sign in as staff - to submit a leave request. <br> User: staff@example.com Password: Test1234!</p>
+    <p>Sign in as a manager - to approve/reject leave requests and view the audit log. <br> User: manager@example.com Password: Test1234!</p>
+    <h3>What it demonstrates</h3>
+    <p><br>Every status change is written to an append-only audit log recording who acted, when,
+    and what changed. <br>Managers cannot approve their own requests. Requests are validated
+    server-side: no past dates, no end dates before start dates, no requests more than two years ahead.</p>
+    <p><a href="https://github.com/JosephLalor1/LeaveRequests">View it on GitHub</a></p>
 </div>

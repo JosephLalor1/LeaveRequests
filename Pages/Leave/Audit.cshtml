@@ -5,22 +5,35 @@
 
 <table class="table">
     <thead>
-        <th>Time</th>
-        <th>Actor Email</th>
-        <th>Action</th>
-        <th>Request ID</th>
-        <th>Change</th>
-        <th>Comment</th>
+        <tr>
+            <th>Time</th>
+            <th>Actor Email</th>
+            <th>Action</th>
+            <th>Request ID</th>
+            <th>Change</th>
+            <th>Comment</th>
+        </tr>
     </thead>
     <tbody>
         @foreach (var entry in Model.Entries)
         {
-            <td>@entry.OccurredAt</td>
-            <td>@entry.ActorEmail</td>
-            <td>@entry.Action</td>
-            <td>@entry.LeaveRequestId</td>
-            <td>@entry.OldStatus -> @entry.NewStatus</td>
-            <td>@entry.Comment</td>
+            <tr>
+                <td>@entry.OccurredAt</td>
+                <td>@entry.ActorEmail</td>
+                <td>@entry.Action</td>
+                <td>@entry.LeaveRequestId</td>
+                <td>
+                    @if (entry.OldStatus != null)
+                    {
+                        <text>@entry.OldStatus -> @entry.NewStatus</text>
+                    }
+                    else
+                    {
+                        @entry.NewStatus
+                    }
+                </td>
+                <td>@entry.Comment</td>
+            </tr>
         }
     </tbody>
 </table>

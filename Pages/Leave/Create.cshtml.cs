@@ -1,3 +1,8 @@
+/*Created: 08/09/2026
+By: Joseph Lalor
+Project: Leave Requests
+Description: Form for new leave request*/
+
 using LeaveRequests.Data;
 using LeaveRequests.Models;
 using LeaveRequests.Services;
@@ -30,6 +35,19 @@ public class CreateModel : PageModel
     
     public async Task<IActionResult> OnPostAsync()
     {
+        var today = DateOnly.FromDateTime(DateTime.Today);
+        if (Input.StartDate < today)
+        {
+            ModelState.AddModelError("Input.StartDate", "Start date cannot be in the past.");
+        }
+        if (Input.EndDate < Input.StartDate)
+        {
+            ModelState.AddModelError("Input.EndDate", "End date cannot be before start date.");
+        }
+        if (Input.StartDate > today.AddYears(2))
+        {
+            ModelState.AddModelError("Input.StartDate", "Start date cannot be more than two years away.");
+        }
         if (!ModelState.IsValid)
         {
             return Page();

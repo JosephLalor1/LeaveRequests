@@ -1,10 +1,10 @@
+/*Created: 08/09/2026
+By: Joseph Lalor
+Project: Leave Requests
+Description: Provides a service which can be used for adding a new entry in the audit database*/
+
 using LeaveRequests.Data;
-using LeaveRequests.Migrations;
 using LeaveRequests.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace LeaveRequests.Services;
 

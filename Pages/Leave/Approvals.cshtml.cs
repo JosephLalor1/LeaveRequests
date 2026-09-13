@@ -1,10 +1,12 @@
-/**/
+/*Created: 08/09/2026
+By: Joseph Lalor
+Project: Leave Requests
+Description: Approval or rejection page for managers*/
 
 using LeaveRequests.Data;
 using LeaveRequests.Models;
 using LeaveRequests.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -56,21 +58,27 @@ public class ApprovalsModel : PageModel
         return RedirectToPage();
     }
 
-    public async Task<IActionResult> OnPostRejectAsync(int id)
+    public async Task<IActionResult> OnPostRejectAsync(int id, string comment)
     {
         var request = await _context.LeaveRequests.FindAsync(id);
-
-        var userId = _userManager.GetUserId(User);
-        string email = User.Identity?.Name ?? "";
 
         if (request == null)
         {
             return NotFound();
         }
 
+        if (string.IsNullOrWhiteSpace(comment))
+        {
+            ModelState.AddModelError(string.Empty, "A reason is required to reject a request.");
+            await OnGetAsync();
+            return Page();            
+        }
+        var userId = _userManager.GetUserId(User);
+        string email = User.Identity?.Name ?? "";
+
         request.Status = LeaveStatus.Rejected;
 
-        _auditService.Record(AuditAction.Rejected, userId, email, request.Id, LeaveStatus.Pending, LeaveStatus.Rejected);
+        _auditService.Record(AuditAction.Rejected, userId, email, request.Id, LeaveStatus.Pending, LeaveStatus.Rejected, comment);
         await _context.SaveChangesAsync();
 
         return RedirectToPage();

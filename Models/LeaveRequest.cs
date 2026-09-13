@@ -3,6 +3,8 @@ By: Joseph Lalor
 Project: Leave Requests
 Description: Creates Leave Request object and database table*/
 
+using System.ComponentModel.DataAnnotations;
+
 namespace LeaveRequests.Models;
 
 public class LeaveRequest
@@ -11,6 +13,8 @@ public class LeaveRequest
     public string UserId {get; set; } = string.Empty;
     public DateOnly StartDate {get; set; }
     public DateOnly EndDate {get; set; }
+    [Required]
+    [MaxLength(500)]
     public string Reason {get; set; } = string.Empty;
     public DateTime SubmittedAt {get; set; }
     public LeaveStatus Status {get; set; }

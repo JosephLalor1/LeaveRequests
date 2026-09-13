@@ -1,12 +1,11 @@
-/**/
+/*Created: 08/09/2026
+By: Joseph Lalor
+Project: Leave Requests
+Description: Audit Log*/
 
 using LeaveRequests.Data;
 using LeaveRequests.Models;
-using LeaveRequests.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authorization.Infrastructure;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 

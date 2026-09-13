@@ -5,30 +5,36 @@
 
 <table class="table">
     <thead>
-        <th>Dates</th>
-        <th>Type</th>
-        <th>Status</th>
-        <th>Approve</th>
-        <th>Reject</th>
+        <tr>
+            <th>Dates</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Approve</th>
+            <th>Reject</th>
+        </tr>
     </thead>
     <tbody>
         @foreach (var request in Model.Requests)
         {
-            <td>@request.StartDate - @request.EndDate</td>
-            <td>@request.Type</td>
-            <td>@request.Status</td>
-            <td>
-                <form method="post" asp-page-handler="Approve" style="display: inline;">
-                    <input type="hidden" name="id" value="@request.Id"/>
-                    <button class="btn btn-sm btn-success" type="submit">Approve</button>
-                </form>
-            </td>
-            <td>
-                <form method="post" asp-page-handler="Reject" style="display: inline;">
-                    <input type="hidden" name="id" value="@request.Id"/>
-                    <button class="btn btn-sm btn-danger" type="submit">Reject</button>
-                </form>
-            </td>
+            <tr>
+                <td>@request.StartDate - @request.EndDate</td>
+                <td>@request.Type</td>
+                <td>@request.Status</td>
+                <td>
+                    <form method="post" asp-page-handler="Approve" style="display: inline;">
+                        <input type="hidden" name="id" value="@request.Id"/>
+                        <button class="btn btn-sm btn-success" type="submit">Approve</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" asp-page-handler="Reject">
+                        <input type="hidden" name="id" value="@request.Id" />
+                        <input type="text" name="comment" class="form-control form-control-sm mb-1" placeholder="Reason for rejection" />
+                        <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                    </form>
+                    <div asp-validation-summary="All" class="alert alert-danger"></div>
+                </td>
+            </tr>
         }
     </tbody>
 </table>

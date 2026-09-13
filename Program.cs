@@ -1,3 +1,8 @@
+/*Created: 08/09/2026
+By: Joseph Lalor
+Project: Leave Requests
+Description: Main program file*/
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using LeaveRequests.Data;
