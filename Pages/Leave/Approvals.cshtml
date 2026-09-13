@@ -1,0 +1,34 @@
+@page
+@model LeaveRequests.Pages.Leave.ApprovalsModel
+
+<h1>Leave Request Dashboard</h1>
+
+<table class="table">
+    <thead>
+        <th>Dates</th>
+        <th>Type</th>
+        <th>Status</th>
+        <th>Approve</th>
+        <th>Reject</th>
+    </thead>
+    <tbody>
+        @foreach (var request in Model.Requests)
+        {
+            <td>@request.StartDate - @request.EndDate</td>
+            <td>@request.Type</td>
+            <td>@request.Status</td>
+            <td>
+                <form method="post" asp-page-handler="Approve" style="display: inline;">
+                    <input type="hidden" name="id" value="@request.Id"/>
+                    <button class="btn btn-sm btn-success" type="submit">Approve</button>
+                </form>
+            </td>
+            <td>
+                <form method="post" asp-page-handler="Reject" style="display: inline;">
+                    <input type="hidden" name="id" value="@request.Id"/>
+                    <button class="btn btn-sm btn-danger" type="submit">Reject</button>
+                </form>
+            </td>
+        }
+    </tbody>
+</table>
