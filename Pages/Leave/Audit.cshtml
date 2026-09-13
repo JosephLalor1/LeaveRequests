@@ -1,0 +1,26 @@
+@page
+@model LeaveRequests.Pages.Leave.AuditModel
+
+<h1>Audit Logs</h1>
+
+<table class="table">
+    <thead>
+        <th>Time</th>
+        <th>Actor Email</th>
+        <th>Action</th>
+        <th>Request ID</th>
+        <th>Change</th>
+        <th>Comment</th>
+    </thead>
+    <tbody>
+        @foreach (var entry in Model.Entries)
+        {
+            <td>@entry.OccurredAt</td>
+            <td>@entry.ActorEmail</td>
+            <td>@entry.Action</td>
+            <td>@entry.LeaveRequestId</td>
+            <td>@entry.OldStatus -> @entry.NewStatus</td>
+            <td>@entry.Comment</td>
+        }
+    </tbody>
+</table>
