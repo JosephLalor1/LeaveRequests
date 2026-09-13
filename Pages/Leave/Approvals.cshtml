@@ -32,7 +32,11 @@
                         <input type="text" name="comment" class="form-control form-control-sm mb-1" placeholder="Reason for rejection" />
                         <button type="submit" class="btn btn-sm btn-danger">Reject</button>
                     </form>
-                    <div asp-validation-summary="All" class="alert alert-danger"></div>
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div asp-validation-summary="All" class="alert alert-danger"></div>
+                    }
+                    
                 </td>
             </tr>
         }
